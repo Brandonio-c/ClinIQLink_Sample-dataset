@@ -1,0 +1,131 @@
+[
+    {
+        "answer": [
+            "Trapezius",
+            "Latissimus dorsi",
+            "Rhomboid minor",
+            "Rhomboid major",
+            "Levator scapulae"
+        ],
+        "options": [
+            "Trapezius",
+            "Latissimus dorsi",
+            "Rhomboid minor",
+            "Levator scapulae",
+            "Deltoids",
+            "Biceps brachii",
+            "Triceps brachii",
+            "Rhomboid major"
+        ],
+        "question": "What are all the names of superficial and deeper muscles located in the back?",
+        "source": {
+            "isbn": "000-0000000000",
+            "page": 0,
+            "paragraph_id": "000-0000000000-p00-para0"
+        },
+        "type": "list"
+    },
+    {
+        "answer": [
+            "Esophagus",
+            "Cardiac plexus",
+            "Pulmonary plexus",
+            "Trachea",
+            "Azygos vein",
+            "Brachiocephalic trunk"
+        ],
+        "options": [
+            "Esophagus",
+            "Cardiac plexus",
+            "Pulmonary plexus",
+            "Trachea",
+            "Diaphragm",
+            "Superior vena cava",
+            "Azygos vein",
+            "Brachiocephalic trunk",
+            "Bronchus",
+            "Phrenic nerve",
+            "Lungs"
+        ],
+        "question": "What structures does the right vagus nerve pass near or give branches to?",
+        "source": {
+            "isbn": "000-0000000000",
+            "page": 0,
+            "paragraph_id": "000-0000000000-p00-para0"
+        },
+        "type": "list"
+    },
+    {
+        "answer": [
+            "Celiac trunk branches",
+            "Superior mesenteric artery branches"
+        ],
+        "options": [
+            "Radial artery",
+            "Ulnar artery",
+            "Celiac trunk branches",
+            "Superior mesenteric artery branches",
+            "Carotid arteries"
+        ],
+        "question": "What are all the types of arteries involved in providing a dual blood supply to the duodenum?",
+        "source": {
+            "isbn": "000-0000000000",
+            "page": 0,
+            "paragraph_id": "000-0000000000-p00-para0"
+        },
+        "type": "list"
+    },
+    {
+        "answer": [
+            "Rectal plexus",
+            "Uterovaginal plexus",
+            "Prostatic plexus",
+            "Vesical plexus"
+        ],
+        "options": [
+            "Rectal plexus",
+            "Uterovaginal plexus",
+            "Prostatic plexus",
+            "Vesical plexus"
+        ],
+        "question": "What are all the types of subsidiary plexuses given origin by the inferior hypogastric plexuses?",
+        "source": {
+            "isbn": "000-0000000000",
+            "page": 0,
+            "paragraph_id": "000-0000000000-p00-para0"
+        },
+        "type": "list"
+    },
+    {
+        "answer": [
+            "Superior gluteal nerve and vessel",
+            "Inferior gluteal nerves and vessels",
+            "Sciatic nerve",
+            "Posterior femoral cutaneous nerves",
+            "Pudendal nerve",
+            "Internal pudendal artery and vein",
+            "Nerve to quadratus femoris",
+            "Nerves to obturator internus muscle"
+        ],
+        "options": [
+            "Superior gluteal nerve and vessel",
+            "Inferior gluteal nerves and vessels",
+            "Sciatic nerve",
+            "Posterior femoral cutaneous nerves",
+            "Pudendal nerve",
+            "Internal pudendal artery and vein",
+            "Nerve to quadratus femoris",
+            "Piriformis muscle",
+            "Obturator nerve and vessels",
+            "Greater trochanter"
+        ],
+        "question": "What are all the structures passing through the greater sciatic foramen?",
+        "source": {
+            "isbn": "000-0000000000",
+            "page": 0,
+            "paragraph_id": "000-0000000000-p00-para0"
+        },
+        "type": "list"
+    }
+
+]
