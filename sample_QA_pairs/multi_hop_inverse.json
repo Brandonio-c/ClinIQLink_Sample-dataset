@@ -40,7 +40,6 @@
         },
         "type": "multi_hop_inverse"
     },
-    
     {
         "answer": "These signals start from spinal nerve levels below T1, specifically originating from L2, before traveling up through the sympathetic trunk to reach facial structures.",
         "incorrect_reasoning_step": [
