@@ -7,6 +7,7 @@ import nltk
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 from nltk.translate.meteor_score import meteor_score
 from rouge_score import rouge_scorer
+from transformers import GPT2LMHeadModel, GPT2Tokenizer, pipeline
 
 class ClinIQLinkSampleDatasetSubmit:
     def __init__(self):
@@ -22,48 +23,34 @@ class ClinIQLinkSampleDatasetSubmit:
 
     def load_participant_model(self):
         """
-        Placeholder function to load the participant's LLM model.
-        Replace this function with your actual model loading code.
-        
-        Example:
-            from transformers import AutoModelForCausalLM
-            model = AutoModelForCausalLM.from_pretrained("your-model-name")
-        
-        This function attempts to load the model and returns it.
-        If any error occurs during model loading, the error is caught, logged, and None is returned.
+        Load the GPT-2 model.
         """
-        print("Loading participant's LLM model... (placeholder)", flush=True)
+        print("Loading GPT-2 model...", flush=True)
         try:
-            # Replace the following line with your actual model loading code.
-            model = None  # e.g., model = AutoModelForCausalLM.from_pretrained("your-model-name")
-            print("Participant's LLM model loaded successfully.", flush=True)
+            model = GPT2LMHeadModel.from_pretrained("gpt2")
+            print("GPT-2 model loaded successfully.", flush=True)
             return model
         except Exception as e:
-            print(f"Error loading participant's LLM model: {e}", flush=True)
+            print(f"Error loading GPT-2 model: {e}", flush=True)
             return None
-
 
     def load_participant_pipeline(self):
         """
-        Placeholder function to load the participant's LLM inference pipeline.
-        Replace this function with your actual pipeline initialization code.
-        
-        Example:
-            from transformers import pipeline
-            pipeline_instance = pipeline("text-generation", model=self.model)
-        
-        This function attempts to initialize the LLM inference pipeline and returns it.
-        If any error occurs during initialization, the error is caught, logged, and None is returned.
+        Initialize the text generation pipeline with the GPT-2 model.
         """
-        print("Loading participant's LLM pipeline... (placeholder)", flush=True)
+        print("Loading GPT-2 pipeline...", flush=True)
         try:
-            # Replace the following line with your actual pipeline initialization code.
-            pipeline_instance = None  # e.g., pipeline_instance = pipeline("text-generation", model=self.model)
-            print("Participant's LLM pipeline loaded successfully.", flush=True)
-            return pipeline_instance
+            tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+            # Ensure the tokenizer has a padding token
+            if tokenizer.pad_token is None:
+                tokenizer.pad_token = tokenizer.eos_token
+            text_generator = pipeline("text-generation", model=self.model, tokenizer=tokenizer)
+            print("GPT-2 pipeline loaded successfully.", flush=True)
+            return text_generator
         except Exception as e:
-            print(f"Error loading participant's LLM pipeline: {e}", flush=True)
+            print(f"Error loading GPT-2 pipeline: {e}", flush=True)
             return None
+        
 
     def load_json(self, filepath):
         """
@@ -265,16 +252,19 @@ class ClinIQLinkSampleDatasetSubmit:
             return {"bleu": 0.0, "meteor": 0.0, "rouge": 0.0}
 
 
-
-    def YOUR_LLM_PLACEHOLDER(self, prompt):
+    def call_GPT2(self, prompt):
         """
-        This function is a placeholder for interfacing with your actual LLM.
-        Replace the contents of this function with your LLM integration as needed.
-        For now, it simply returns "NO LLM IMPLEMENTED" to indicate that no LLM is connected.
+        Generate text using the GPT-2 pipeline.
         """
-        # Here, you would normally call your LLM (You must call a local model to do inference, no API requests will be accepted)
-        # and return its response. For now, we return a fixed message.
-        return "NO LLM IMPLEMENTED"
+        try:
+            # Generate text with a maximum length of 100 tokens
+            response = self.pipeline(prompt, max_length=1000, num_return_sequences=1)
+            # Extract and return the generated text
+            generated_text = response[0]['generated_text']
+            return generated_text
+        except Exception as e:
+            print(f"Error generating text with GPT-2: {e}", flush=True)
+            return "Error generating text with GPT-2."
 
     def evaluate_true_false_questions(self):
         """
@@ -293,7 +283,7 @@ class ClinIQLinkSampleDatasetSubmit:
             for qa in tf_data:
                 try:
                     prompt = self.generate_prompt(template, qa, "true_false")
-                    response = self.YOUR_LLM_PLACEHOLDER(prompt)
+                    response = self.call_GPT2(prompt)
                     expected = qa.get("answer", "").strip().lower()
                     predicted = response.strip().lower()
                     score = self.evaluate_true_false(expected, predicted)
@@ -332,7 +322,7 @@ class ClinIQLinkSampleDatasetSubmit:
             for qa in mc_data:
                 try:
                     prompt = self.generate_prompt(template, qa, "multiple_choice")
-                    response = self.YOUR_LLM_PLACEHOLDER(prompt)
+                    response = self.call_GPT2(prompt)
                     expected = qa.get("correct_answer", "").strip().lower()
                     predicted = response.strip().lower()
                     score = self.evaluate_multiple_choice(expected, predicted)
@@ -371,7 +361,7 @@ class ClinIQLinkSampleDatasetSubmit:
             for qa in list_data:
                 try:
                     prompt = self.generate_prompt(template, qa, "list")
-                    response = self.YOUR_LLM_PLACEHOLDER(prompt)
+                    response = self.call_GPT2(prompt)
                     expected_items = [item.strip().lower() for item in qa.get("answer", [])]
                     predicted_items = [item.strip().lower() for item in response.split(",")]
                     _, _, f1 = self.compute_f1_score(expected_items, predicted_items)
@@ -410,7 +400,7 @@ class ClinIQLinkSampleDatasetSubmit:
             for qa in short_data:
                 try:
                     prompt = self.generate_prompt(template, qa, "short")
-                    response = self.YOUR_LLM_PLACEHOLDER(prompt)
+                    response = self.call_GPT2(prompt)
                     expected = qa.get("answer", "")
                     f1_score = self.evaluate_open_ended(expected, response)
                     metrics = self.evaluate_open_ended_metrics(expected, response)
@@ -450,7 +440,7 @@ class ClinIQLinkSampleDatasetSubmit:
             for qa in short_inverse_data:
                 try:
                     prompt = self.generate_prompt(template, qa, "short_inverse")
-                    response = self.YOUR_LLM_PLACEHOLDER(prompt)
+                    response = self.call_GPT2(prompt)
                     print("Short Inverse Response:", response, flush=True)
                     # Use the provided incorrect explanation as the expected text.
                     expected = qa.get("incorrect_explanation", "")
@@ -493,7 +483,7 @@ class ClinIQLinkSampleDatasetSubmit:
             for qa in mh_data:
                 try:
                     prompt = self.generate_prompt(template, qa, "multi_hop")
-                    response = self.YOUR_LLM_PLACEHOLDER(prompt)
+                    response = self.call_GPT2(prompt)
                     expected = qa.get("answer", "")
                     f1_score = self.evaluate_open_ended(expected, response)
                     metrics = self.evaluate_open_ended_metrics(expected, response)
@@ -534,7 +524,7 @@ class ClinIQLinkSampleDatasetSubmit:
             for qa in mh_inverse_data:
                 try:
                     prompt = self.generate_prompt(template, qa, "multi_hop_inverse")
-                    response = self.YOUR_LLM_PLACEHOLDER(prompt)
+                    response = self.call_GPT2(prompt)
                     print("Multi-hop Inverse Response:", response, flush=True)
                     # Use the provided incorrect reasoning step as the expected text.
                     expected = qa.get("incorrect_reasoning_step", "")

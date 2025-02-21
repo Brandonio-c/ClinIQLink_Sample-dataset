@@ -1,6 +1,3 @@
-### **README.md for `sample_QA_pairs/` Folder**  
-
-```markdown
 # Sample QA Pairs
 
 This folder contains sample question-answer pairs for **ClinIQLink 2025 - LLM Lie Detector Task**. These examples are provided to help participants understand the expected input format for their models. Each question type aligns with the official benchmark structure.

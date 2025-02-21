@@ -28,9 +28,9 @@ This folder contains the prompt template files used by the `submit.py` script to
 
 - Ensure that the `submit.py` script is configured to read these prompt templates from this folder.
 - The script dynamically builds the prompt by inserting the extracted QA data into the templates.
-- The final prompt is sent to the LLM, and its output is processed and evaluated as part of the challenge workflow.
+- The final prompt is sent to the model, and its output is processed and evaluated as part of the challenge workflow.
 
 ## Customization
 
-You may NOT modify these templates. 
+You can NOT modify these templates. 
 Any modifiaction to prompt template requests must be made to the CLinIQLink team.

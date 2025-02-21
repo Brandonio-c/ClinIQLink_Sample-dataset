@@ -1,6 +1,7 @@
-Here’s a refined **README.md** for your **ClinIQLink Sample Dataset** GitHub repository:
+# ClinIQLink Challenge page
 
----
+See our challenge page here: https://brandonio-c.github.io/ClinIQLink-2025/
+
 
 # ClinIQLink Sample Dataset
 
@@ -17,12 +18,20 @@ ClinIQLink_Sample-dataset/
 │   ├── TF.json
 │   ├── QA_Dataset.csv
 │ 
-├── sample_submission/                      # Example of a correctly formatted submission
-│   ├── submit.py
-│   ├── README.md                           # Submission format details
-│   ├── submission_template/                # Blank template for participant submissions
-│       ├── submission_template.prompt
-│       ├── README.md
+├── sample_submission/                  # Example of a correctly formatted submission
+│   ├── submit.py                       # Main submission script (participants modify this)
+│   ├── submit_GPT-2_example.py         # Example implementation using GPT-2
+│   ├── submit.sh                       # SLURM submission script for HPC environments
+│   ├── README.md                       # This document
+│   ├── submission_template/            # Blank template for participants
+│   ├── MC_template.prompt
+│   ├── list_template.prompt
+│       ├── multi_hop_template.prompt
+│       ├── multi_hop_inverse_template.prompt
+│       ├── short_template.prompt
+│       ├── short_inverse_template.prompt
+│       ├── tf_template.prompt
+│       ├── README.md                   # Instructions for using the templates
 │ 
 ├── README.md                               # Main repository documentation
 └── LICENSE                                 # License restricting dataset use

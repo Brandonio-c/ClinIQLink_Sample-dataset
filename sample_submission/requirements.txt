@@ -1,0 +1,7 @@
+numpy
+scikit-learn
+sentence-transformers
+nltk
+rouge-score
+transformers # only required if using GPT-2 example
+torch
