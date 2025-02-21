@@ -27,25 +27,33 @@
     },
     {
         "answer": [
-            "Esophagus",
-            "Cardiac plexus",
-            "Pulmonary plexus",
+            "Right recurrent laryngeal nerve",
+            "Right subclavian artery",
             "Trachea",
-            "Azygos vein",
-            "Brachiocephalic trunk"
-        ],
-        "options": [
             "Esophagus",
-            "Cardiac plexus",
-            "Pulmonary plexus",
-            "Trachea",
-            "Diaphragm",
             "Superior vena cava",
+            "Right main bronchus",
+            "Cardiac plexus",
+            "Pulmonary plexus",
+            "Esophageal plexus"
+            ],
+        "options": [
+            "Right recurrent laryngeal nerve",
+            "Right subclavian artery",
+            "Trachea",
+            "Esophagus",
+            "Superior vena cava",
+            "Right main bronchus",
+            "Cardiac plexus",
+            "Pulmonary plexus",
+            "Esophageal plexus",
+            "Diaphragm",
             "Azygos vein",
             "Brachiocephalic trunk",
-            "Bronchus",
+            "Posterior vagal trunk",
             "Phrenic nerve",
-            "Lungs"
+            "Left vagus nerve",
+            "Thoracic duct"
         ],
         "question": "What structures does the right vagus nerve pass near or give branches to?",
         "source": {
@@ -56,18 +64,21 @@
         "type": "list"
     },
     {
+        "question": "What are all the arteries involved in providing blood supply to the duodenum?",
         "answer": [
             "Celiac trunk branches",
             "Superior mesenteric artery branches"
         ],
         "options": [
-            "Radial artery",
-            "Ulnar artery",
             "Celiac trunk branches",
+            "Renal arteries",
+            "Inferior mesenteric artery branches",
+            "Common iliac arteries",
             "Superior mesenteric artery branches",
-            "Carotid arteries"
+            "Splenic artery",
+            "Gonadal arteries",
+            "Lumbar arteries"
         ],
-        "question": "What are all the types of arteries involved in providing a dual blood supply to the duodenum?",
         "source": {
             "isbn": "000-0000000000",
             "page": 0,
@@ -88,7 +99,7 @@
             "Prostatic plexus",
             "Vesical plexus"
         ],
-        "question": "What are all the types of subsidiary plexuses given origin by the inferior hypogastric plexuses?",
+        "question": "What are the subsidiary plexuses of the inferior hypogastric plexus? ",
         "source": {
             "isbn": "000-0000000000",
             "page": 0,
