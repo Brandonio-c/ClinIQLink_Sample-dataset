@@ -38,14 +38,13 @@ ClinIQLink_Sample-dataset/
 ```
 
 ## How to Use
-1. Review the **sample_questions/** directory for example question-answer pairs.
-2. Generate your model's responses using the provided question formats.
-3. Structure your answers based on **submission_template.json**.
-4. Compare your submission with the **sample_submission/** example.
-5. Ensure the submission matches the expected format before uploading to [CodaBench](https://www.codabench.org/competitions/5117/).
+1. Review the **sample_QA_pairs** directory for example question-answer pairs.
+2. Generate your model's responses using the provided submit.py script.
+3. See score generated from submisson script.
+4. Ensure the submission matches the expected format before uploading to [CodaBench](https://www.codabench.org/competitions/5117/).
 
 ## Submission Format
-Each submission must follow a strict JSON format. Example:
+Each QA pair follow a strict JSON format. Example:
 ```json
 [
      {
@@ -60,7 +59,22 @@ Each submission must follow a strict JSON format. Example:
     },
 ]
 ```
-Refer to **sample_submission/** for a complete example.
+Refer to **sample_QA_Pairs/** for a complete examples for each qa pair type.
+
+These json files are used in conjunction with the submission prompt templates to prompt your LLM. Example:
+
+```
+You are a highly knowledgeable medical expert. Answer the following short answer question accurately and concisely. Your final answer must be no more than 100 words.
+
+Question:
+{question}
+
+Expected response output format:
+Final Answer: <your concise answer here (max 100 words)>
+```
+
+The QA pair data and prompt templates are combined by the submit.py file and are used to determine scores for QA pair answers. 
+
 Source text information will be obscured from the sample dataset to ensure participants do not attempt to recreate the dataset/ just finetune over the source texts to "game" the benchmark. 
 
 ## Important Links
