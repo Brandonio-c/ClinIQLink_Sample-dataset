@@ -24,8 +24,8 @@ ClinIQLink_Sample-dataset/
 │   ├── submit.sh                       # SLURM submission script for HPC environments
 │   ├── README.md                       # This document
 │   ├── submission_template/            # Blank template for participants
-│   ├── MC_template.prompt
-│   ├── list_template.prompt
+│       ├── MC_template.prompt
+│       ├── list_template.prompt
 │       ├── multi_hop_template.prompt
 │       ├── multi_hop_inverse_template.prompt
 │       ├── short_template.prompt
