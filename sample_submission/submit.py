@@ -90,6 +90,76 @@ class ClinIQLinkSampleDatasetSubmit:
             return None
 
 
+    def generate_prompt(self, template, qa, qa_type):
+        """
+        Generates a prompt for the given QA pair using the specified template.
+
+        Args:
+            template (str): The prompt template.
+            qa (dict): A dictionary containing question and options (if applicable).
+            qa_type (str): The type of question (e.g., "true_false", "multiple_choice", "list", etc.).
+
+        Returns:
+            str: A formatted prompt.
+        """
+        try:
+            # Extract common fields
+            question = qa.get("question", "Unknown Question")
+            answer = qa.get("answer", "")
+            options = qa.get("options", {})
+            reasoning = qa.get("reasoning", "")
+            false_answer = qa.get("false_answer", "")
+
+            if qa_type == "true_false":
+                return template.format(question=question)
+
+            elif qa_type == "multiple_choice":
+                # Ensure the placeholders match your MC template
+                return template.format(
+                    question=question,
+                    options_A=options.get("A", "Option A missing"),
+                    options_B=options.get("B", "Option B missing"),
+                    options_C=options.get("C", "Option C missing"),
+                    options_D=options.get("D", "Option D missing")
+                )
+
+            elif qa_type == "list":
+                # Convert list to a joined string for {options_joined}
+                options_joined = "\n".join(options) if isinstance(options, list) else str(options)
+                return template.format(
+                    question=question,
+                    options_joined=options_joined
+                )
+
+            elif qa_type == "multi_hop":
+                return template.format(question=question)
+
+            elif qa_type == "multi_hop_inverse":
+                return template.format(
+                    question=question,
+                    answer=answer,
+                    reasoning=reasoning
+                )
+
+            elif qa_type == "short":
+                return template.format(question=question)
+
+            elif qa_type == "short_inverse":
+                return template.format(
+                    question=question,
+                    false_answer=false_answer
+                )
+
+            else:
+                print(f"Warning: Unknown QA type '{qa_type}'", flush=True)
+                return "Invalid QA type."
+
+        except Exception as e:
+            print(f"Error generating prompt: {e}", flush=True)
+            return "Error generating prompt."
+
+
+
     def compute_f1_score(self, true_list, pred_list):
         """
         Compute precision, recall, and F1 score for list-type answers.

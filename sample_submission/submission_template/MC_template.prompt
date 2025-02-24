@@ -4,10 +4,10 @@ Question:
 {question}
 
 Options:
-A: {options.A}
-B: {options.B}
-C: {options.C}
-D: {options.D}
+A: {options_A}
+B: {options_B}
+C: {options_C}
+D: {options_D}
 
 Expected response output format:
 A single letter (e.g., "A", "B", "C" or "D")

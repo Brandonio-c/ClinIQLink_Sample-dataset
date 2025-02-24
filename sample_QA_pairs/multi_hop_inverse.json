@@ -65,7 +65,7 @@
         "answer": "It inhibits bladder function.",
         "incorrect_reasoning_step": [
             "- Step 4 contains the incorrect inference.",
-            "- Explanation: In Step 4, the assumption that the levator ani's participation in processes affected by the inferior hypogastric plexus implies a potential effect on bladder function during sexual arousal introduces an unjustified leap. While the levator ani indeed participates in the support and positioning of pelvic viscera and influences the stability of the pelvic floor, the provided paragraph specifically discusses its mention alongside other elements without establishing a causal connection to bladder inhibition or sexual arousal-related changes in bladder function. Therefore, inferring its contribution to inhibiting bladder function represents an unwarranted extension beyond the given data.",
+            "- Explanation: In Step 4, the assumption that the levator ani's participation in processes affected by the inferior hypogastric plexus implies a potential effect on bladder function during sexual arousal introduces an unjustified leap. While the levator ani indeed participates in the support and positioning of pelvic viscera and influences the stability of the pelvic floor, the provided paragraph specifically discusses its mention alongside other elements without establishing a causal connection to bladder inhibition or sexual arousal-related changes in bladder function. Therefore, inferring its contribution to inhibiting bladder function represents an unwarranted extension beyond the given data."
         ],
         "question": "What does the attachment of levator ani contribute towards during sexual arousal?",
         "reasoning": [
