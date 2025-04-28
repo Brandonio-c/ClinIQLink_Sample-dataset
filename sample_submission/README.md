@@ -1,96 +1,104 @@
 # Sample Submission Guide
 
-This directory provides an example of a correctly formatted submission for **ClinIQLink** evaluations. Participants should use this structure to prepare their submissions.
+This directory shows a minimal, ready-to-run submission for the **ClinIQLink** evaluations.  
+You can run it “as-is” and easily swap in your own model.
 
-## Folder Structure
+---
+
+## 1. Folder Structure
 
 ```
 sample_submission/
-├── submit.py                   # Main submission script (participants modify this)
-├── submit_GPT-2_example.py      # Example implementation using GPT-2
-├── submit.sh                    # SLURM submission script for HPC environments
-├── README.md                    # This document
-├── submission_template/          # Blank template for participants
-│   ├── MC_template.prompt
-│   ├── list_template.prompt
-│   ├── multi_hop_template.prompt
-│   ├── multi_hop_inverse_template.prompt
-│   ├── short_template.prompt
-│   ├── short_inverse_template.prompt
-│   ├── tf_template.prompt
-│   ├── README.md                 # Instructions for using the templates
+├── submit.py                  # Main driver 
+├── README.md                   # This document
+├── model_submission/           # Put your weights or scripts here
+│   └── snapshots/
+│       └── gpt2/               # Example: Hugging Face "gpt2" snapshot (or your own model)
+│           ├── config.json
+│           ├── pytorch_model.bin
+│           ├── tokenizer.json
+│           └── …               # etc.
+└── submission_template/        # Prompt templates (keep unchanged unless necessary)
+    ├── MC_template.prompt
+    ├── list_template.prompt
+    ├── multi_hop_template.prompt
+    ├── multi_hop_inverse_template.prompt
+    ├── short_template.prompt
+    ├── short_inverse_template.prompt
+    ├── tf_template.prompt
+    └── README.md
 ```
 
-## How to Use
-
-### 1. Modify `submit.py`
-Participants should modify `submit.py` to implement their model. The script should:
-
-- Load and initialize the selected LLM.
-- Process the provided QA datasets.
-- Generate responses following the expected format.
-- Output results as a JSON file.
-
-#### Specifically, the following functions must be updated:
-
-- **`load_participant_model(self)`**  
-  - Implement loading of the chosen LLM model locally
-
-- **`load_participant_pipeline(self)`**  
-  - Initialize the LLM inference pipeline.
-
-- **`YOUR_LLM_PLACEHOLDER(self, prompt)`** *(or rename for another model)*  
-  - Update this function to call the loaded model and return generated text.
-
-### 2. Run Locally
-Before submitting, test the script locally by running:
+To download a Hugging Face model into `model_submission/snapshots/`, you can use:
 
 ```bash
-python submit.py
+transformers-cli download gpt2 --cache-dir model_submission/snapshots
 ```
 
-### 3. Using GPT-2 (Example)
-An example implementation using GPT-2 is provided in `submit_GPT-2_example.py`. This serves as a reference for setting up a model and generating responses.
+or any other model snapshots you would like to use 
+---
 
-### 4. Submit to SLURM HPC
-If running on an HPC cluster, use the provided SLURM job submission script:
+## 2. Quick Start (Local CPU)
 
 ```bash
-sbatch submit.sh
+# Optional: create a clean environment
+python -m venv cliniq_env
+source cliniq_env/bin/activate
+pip install --upgrade pip transformers torch
+
+# Run the submission
+python submit.py --mode local --chunk_size 4 --max_length 200 --num_tf 1 --num_mc 1 --num_list 1 --num_short 1 --num_short_inv 1 --num_multi 1 --num_multi_inv 1
 ```
 
-The `submit.sh` script should be modified to match the specific requirements of the computing environment.
+- No edits required.
+- The script detects the model placed under `model_submission/snapshots/` and runs it automatically.
 
-## Submission Template
+To use a different Hugging Face model:
 
-The `submission_template/` folder contains **prompt templates** for different QA types:
+1. Place the model snapshot under `model_submission/snapshots/Model-Name/`.
+2. Simply run:
 
-- **MC_template.prompt** – Multiple-choice question prompt
-- **list_template.prompt** – List-based question prompt
-- **multi_hop_template.prompt** – Multi-hop reasoning question prompt
-- **multi_hop_inverse_template.prompt** – Inverse multi-hop question prompt
-- **short_template.prompt** – Short-answer question prompt
-- **short_inverse_template.prompt** – Inverse short-answer question prompt
-- **tf_template.prompt** – True/False question prompt
+```bash
+python submit.py --mode local --chunk_size 4 --max_length 200 --num_tf 1 --num_mc 1 --num_list 1 --num_short 1 --num_short_inv 1 --num_multi 1 --num_multi_inv 1
+```
 
-Each prompt provides a **format example** for how inputs should be structured when interacting with an LLM.
+---
 
-## Submission Format
+## 4. Modifying `submit.py` (Optional)
 
-A valid submission should:
+You typically do not need to modify `submit.py`.  
+Only change it if:
 
-- Follow the structure of the **sample_submission** folder.
-- Include all necessary dependencies inside `submit.py`.
-- Match the expected **input-output format** of the provided datasets.
-- Run without errors in the evaluation environment.
+- You need to load a non-standard checkpoint format (e.g., DeepSpeed),
+- You want to customize batch handling,
+- You are integrating additional modules like retrieval-augmented generation (RAG).
 
-## Notes
+Key functions you can modify:
 
-- The `submission_template/` folder provides an outline for expected submissions.
-- You cannot use an external API for an LLM. 
-- More information is available on the ClinIQLink challenge page on using outcall requests to do things like retrieving information on the question for RAG etc. see: https://brandonio-c.github.io/ClinIQLink-2025/
-- If running a local model, make sure all dependencies are installed and configured correctly.
+| Function | Purpose |
+|----------|---------|
+| `load_participant_model(self)` | How your model is loaded |
+| `load_participant_pipeline(self)` | How inference is handled |
 
-For further details, refer to the **main repository README.md**.
+---
 
+## 5. Prompt Templates
+
+The `submission_template/` folder contains `.prompt` files for each QA type.  
+These templates define how questions are framed when given to the model.  
+Only adjust them if necessary.
+
+---
+
+## 6. Submission Requirements
+
+A valid submission must:
+
+- Follow the folder structure described above.
+- Place all model weights and scripts under `model_submission/snapshots/`.
+- Ensure `submit.py` runs locally without errors.
+- Avoid using external LLM APIs during inference.
+
+More information and detailed rules can be found on the ClinIQLink Challenge website:  
+[https://cliniqlink.org](https://cliniqlink.org)
 

@@ -1,8 +1,14 @@
 # ClinIQLink Challenge page
 
-See our challenge page here: https://brandonio-c.github.io/ClinIQLink-2025/
+## Challenge Information
 
+- **Main Website**: https://cliniqlink.org/
+- **Container submission and testing evaluation environment and setup scripts**: https://github.com/Brandonio-c/ClinIQLink_CodaBench_docker-setup
+- **CodaBench Competition**: https://www.codabench.org/competitions/5117/
+- **Official Docker Image**: [`brandonioc/cliniqlink-image`](https://hub.docker.com/r/brandonioc/cliniqlink-image)
+- **Sample Dataset**: https://github.com/Brandonio-c/ClinIQLink_Sample-dataset
 
+---
 # ClinIQLink Sample Dataset
 
 This repository provides a **sample dataset** for participants in the **ClinIQLink 2025 - LLM Lie Detector Task**. The dataset is intended **only for format verification** and does not contain training data. Participants should use this dataset to ensure their submissions conform to the required structure before submitting to [CodaBench](https://www.codabench.org/competitions/5117/).
@@ -20,9 +26,8 @@ ClinIQLink_Sample-dataset/
 │ 
 ├── sample_submission/                  # Example of a correctly formatted submission
 │   ├── submit.py                       # Main submission script (participants modify this)
-│   ├── submit_GPT-2_example.py         # Example implementation using GPT-2
-│   ├── submit.sh                       # SLURM submission script for HPC environments
-│   ├── README.md                       # This document
+│   ├── requirements.txt 
+│   ├── README.md                       
 │   ├── submission_template/            # Blank template for participants
 │       ├── MC_template.prompt
 │       ├── list_template.prompt
@@ -78,7 +83,7 @@ The QA pair data and prompt templates are combined by the submit.py file and are
 Source text information will be obscured from the sample dataset to ensure participants do not attempt to recreate the dataset/ just finetune over the source texts to "game" the benchmark. 
 
 ## Important Links
-- Official Challenge Website: [ClinIQLink 2025](https://brandonio-c.github.io/ClinIQLink-2025/)
+- Official Challenge Website: [ClinIQLink 2025](https://cliniqlink.org)
 - CodaBench Benchmark: [View Challenge](https://www.codabench.org/competitions/5117/)
 
 ## License
